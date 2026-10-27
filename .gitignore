@@ -1,0 +1,5 @@
+server.exe
+expenses.csv
+*.o
+*.obj
+.vscode/
