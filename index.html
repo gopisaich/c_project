@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <header class="header">
+        <div>
+            <p class="eyebrow">PERSONAL FINANCE</p>
+            <h1>Expense Tracker</h1>
+            <p>Understand your spending. Manage your money better.</p>
+        </div>
+        <div class="date-badge" id="todayLabel">Your dashboard</div>
+    </header>
+
+    <section class="cards">
+        <div class="card blue">
+            <span>Total Expenses</span>
+            <h2 id="total">₹0</h2>
+            <p>All recorded transactions</p>
+        </div>
+        <div class="card purple">
+            <span>This Month</span>
+            <h2 id="month">₹0</h2>
+            <p>Spending this month</p>
+        </div>
+        <div class="card green">
+            <span>Transactions</span>
+            <h2 id="count">0</h2>
+            <p>Total recorded expenses</p>
+        </div>
+    </section>
+
+    <section class="charts-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">YOUR MONEY</p>
+                <h2>Spending Overview</h2>
+            </div>
+            <span class="live-label">● Live data</span>
+        </div>
+
+        <div class="charts-grid">
+            <article class="chart-card">
+                <h3>Spending by Category</h3>
+                <p class="muted">See where your money goes</p>
+                <div class="donut-layout">
+                    <div class="donut" id="categoryChart"
+                         role="img" aria-label="Spending by category">
+                        <div class="donut-hole">
+                            <span>Total spent</span>
+                            <strong id="chartTotal">₹0</strong>
+                        </div>
+                    </div>
+                    <div class="chart-legend" id="categoryLegend">
+                        <p class="muted">Add expenses to see categories.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="chart-card">
+                <h3>Monthly Spending</h3>
+                <p class="muted">Your latest six months</p>
+                <div class="bar-chart" id="monthlyChart"
+                     role="img" aria-label="Monthly spending chart">
+                    <p class="muted">Add expenses to see your monthly trend.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+    
+<!-- Monthly Budget -->
+<section class="budget-section">
+  <div class="budget-heading">
+    <div>
+      <h2>Monthly Budget</h2>
+      <p>Manage your spending and stay on track.</p>
+    </div>
+    <div class="budget-input">
+      <span>₹</span>
+      <input
+        type="number"
+        id="budgetAmount"
+        min="1"
+        step="1"
+        placeholder="Set budget"
+        aria-label="Monthly budget amount"
+      >
+      <button type="button" onclick="saveBudget()">Save</button>
+    </div>
+  </div>
+
+  <div class="budget-stats">
+    <div>
+      <span>Monthly spending</span>
+      <strong id="budgetSpent">₹0</strong>
+    </div>
+    <div>
+      <span>Remaining budget</span>
+      <strong id="budgetRemaining">₹0</strong>
+    </div>
+    <div>
+      <span>Budget used</span>
+      <strong id="budgetPercent">0%</strong>
+    </div>
+  </div>
+
+  <div class="budget-progress-track">
+    <div id="budgetProgress" class="budget-progress-fill"></div>
+  </div>
+  <p id="budgetMessage" class="budget-message">
+    Set a budget to start tracking your spending.
+  </p>
+</section>
+
+    <section class="main">
+        <aside class="left">
+            <p class="eyebrow">NEW TRANSACTION</p>
+            <h2>Add Expense</h2>
+
+            <label for="title">Expense name</label>
+            <input id="title" placeholder="e.g. Groceries">
+
+            <label for="amount">Amount (₹)</label>
+            <input id="amount" type="number" min="0.01"
+                   step="0.01" placeholder="e.g. 500">
+
+            <label for="category">Category</label>
+            <select id="category">
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Shopping</option>
+                <option>Education</option>
+                <option>Bills</option>
+                <option>Health</option>
+                <option>Entertainment</option>
+                <option>Other</option>
+            </select>
+
+            <label for="date">Date</label>
+            <input id="date" type="date">
+
+            <button class="primary-button" onclick="addExpense()">
+                + Add Expense
+            </button>
+        </aside>
+
+        <section class="right">
+            <div class="table-heading">
+                <div>
+                    <p class="eyebrow">TRANSACTION HISTORY</p>
+                    <h2>Recent Expenses</h2>
+                </div>
+                <span class="transaction-badge" id="tableCount">0 records</span>
+            </div>
+
+            <div class="search">
+                <input id="search" placeholder="Search expenses..."
+                       oninput="filterExpenses()">
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list"></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
