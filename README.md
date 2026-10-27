@@ -53,4 +53,4 @@ Keep the server running while using the application.
 
 ## Project Status
 
-Developed as a C++ and web development project.
+Developed as a C++ project.
